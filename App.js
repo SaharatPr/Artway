@@ -4,16 +4,20 @@ import {
   ImageBackground,
   StyleSheet,
   Image,
-  Button,
-  Text
+  Text,
+  Button
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+{/*  Import Page */}
 import LoginPage from './src/page/LoginPage/LoginPage';
 import SpashScreenPage from './src/page/SpashScreenPage/SpashScreen';
 import HomePage from './src/page/HomePage/HomePage';
+import CreateTripPage from './src/page/CreateTripPage/CreateTripPage'
+import CreateDateOneDayPage from './src/page/CreateDateOneDay/CreateDateOneDayPage'
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout } from '@ui-kitten/components';
+import { ApplicationProvider } from '@ui-kitten/components';
 const Stack = createStackNavigator();
 class App extends React.Component{ß
   constructor(props){
@@ -25,9 +29,31 @@ class App extends React.Component{ß
       return (
         <Stack.Navigator>
         <Stack.Screen name="SpashScreenPage" component={SpashScreenPage} options={{headerShown: false}}/>
-          <Stack.Screen name="HomePage" component={HomePage} />
-           <Stack.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
-          
+        <Stack.Screen name="HomePage" component={HomePage} options={{headerShown: false}}/>
+        <Stack.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
+        <Stack.Screen name="CreateTripPage" component={CreateTripPage} 
+          options={
+            {
+              headerBackTitleVisible:false,
+              headerTransparent:true,
+              title: " ",
+              headerTintColor:"#052238"
+            }
+          }
+        />
+        <Stack.Screen name="CreateDateOneDayPage" component={CreateDateOneDayPage} 
+            options={
+              {
+                title:'My trip',
+                headerTitleStyle:{
+                  color:"#052238",
+                  fontSize:24
+                },
+                headerBackTitleVisible:false,
+                headerTintColor:"#052238",
+
+              }
+            }/>
         </Stack.Navigator>
       );
     }

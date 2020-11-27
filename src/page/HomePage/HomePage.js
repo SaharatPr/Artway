@@ -26,9 +26,8 @@ class Home extends React.Component {
 
     return (
         <>
-        
-          <TouchableOpacity title="" style={styles.btnrout}>
-          <Image source={{uri:'https://drive.google.com/uc?export=view&id=1Sbbt_Zo0eUqJrlM-o2DiS35jQphRm-L-'}}  style={styles.imgrout}></Image>
+          <TouchableOpacity title="" style={styles.btnrout} onPress={()=>this.props.navigation.navigate('CreateTripPage')}>
+            <Image source={{uri:'https://drive.google.com/uc?export=view&id=1Sbbt_Zo0eUqJrlM-o2DiS35jQphRm-L-'}}  style={styles.imgrout}></Image>
           </TouchableOpacity>
 
           <MaterialBottomTabs.Navigator barStyle={{ backgroundColor: '#052238' }}>
