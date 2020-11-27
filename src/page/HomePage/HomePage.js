@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from 'react-native';
 import {
   View,
   Text,
-  Image
+  Image,
+  Button,
+  TouchableOpacity
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,7 +14,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Tab1 from '../../tab/Tab1/Tab1';
 import Tab2 from '../../tab/Tab2/Tab2';
 import Tab3 from '../../tab/Tab3/Tab3';
+import Tab4 from '../../tab/Tab4/Tab4';
 import { styles } from './HomeStyle';
+import { Layout } from '@ui-kitten/components';
 const MaterialBottomTabs = createMaterialBottomTabNavigator();
 class Home extends React.Component {
   constructor(props){
@@ -22,42 +25,63 @@ class Home extends React.Component {
   render() {
 
     return (
+        <>
+        
+          <TouchableOpacity title="" style={styles.btnrout}>
+          <Image source={{uri:'https://drive.google.com/uc?export=view&id=1Sbbt_Zo0eUqJrlM-o2DiS35jQphRm-L-'}}  style={styles.imgrout}></Image>
+          </TouchableOpacity>
 
           <MaterialBottomTabs.Navigator barStyle={{ backgroundColor: '#052238' }}>
+           
             <MaterialBottomTabs.Screen
               name="Tab1"
               style={{ marginBottom: 16 }}
               component={Tab1}
               options={{
-                tabBarLabel: 'Home',
+                tabBarLabel: '',
                 tabBarIcon: () => (
-                  <Image source={{uri:"https://drive.google.com/file/d/1mg7FQj3XVHtgv-hF5mtizTl8DZYHYLsH/view?usp=sharing"}} 
-                  style={{width: 26, height: 26}}
-                  ></Image>
+                  <Image source={{uri:'https://drive.google.com/uc?export=view&id=1eZaSQCuWrBgT5_-ho6fsUP-0qYfnlP3d'}} style={{width:"150%",height:"150%"}}/>
                 ),
               }}
             />
-            <MaterialBottomTabs.Screen name="Tab2" component={Tab2}
+            <MaterialBottomTabs.Screen 
+            name="Tab2" 
+            component={Tab2}
+            style={{ marginBottom: 16 }}
               options={{
-                tabBarLabel: 'Profile',
+                tabBarLabel: '',
                 tabBarIcon: () => (
-                  <Icon name = {'home'} size={25} style={[{ color: 'white' }]} />
-                  
-                )
-              }}
-            />
-            <MaterialBottomTabs.Screen name="Tab3" component={Tab3}
-              options={{
-                tabBarLabel: 'Map',
-                tabBarIcon: () => (
-                  <Icon style={[{ color: 'white' }]} size={25} name={'map'} />
+                  <Image source={{uri:'https://drive.google.com/uc?export=view&id=1mg7FQj3XVHtgv-hF5mtizTl8DZYHYLsH'}} style={{width:"150%",height:"150%"}}/>
                 ),
               }}
             />
+            <MaterialBottomTabs.Screen 
+            name="Tab3" 
+            component={Tab3}
+            style={{ marginBottom: 16 }}
+              options={{
+                tabBarLabel: '',
+                tabBarIcon: () => (
+                  <Image source={{uri:'https://drive.google.com/uc?export=view&id=1QS_AjSNSxS8poIc4zSF_9bgTz6qBwwva'}} style={{width:"150%",height:"150%"}}/>
+                ),
+              }}
+            />
+            <MaterialBottomTabs.Screen 
+            name="Tab4" 
+            component={Tab4}
+            style={{ marginBottom: 16 }}
+              options={{
+                tabBarLabel: '',
+                tabBarIcon: () => (
+                  <Image source={{uri:'https://drive.google.com/uc?export=view&id=1SsrJDBu-nQmzUxgMUegr-rgpWc99W1Zq'}} style={{width:"150%",height:"150%"}}/>
+                ),
+              }}
+            />
+            
           </MaterialBottomTabs.Navigator>
-
-
+          </>
     );
+    
   }
 
 }
