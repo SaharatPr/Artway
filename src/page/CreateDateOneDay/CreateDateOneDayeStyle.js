@@ -53,6 +53,16 @@ const styles = StyleSheet.create(
             alignItems: 'center',
             flexDirection: "column",
             marginRight:"10%"
+        },
+        selectdate:{
+            width:"50%",
+            borderRadius:10,
+            borderColor: "#052238",
+            marginTop:"5%",
+            height:100
+        },
+        datetime:{
+            backgroundColor : "#FF00FF"
         }
 
     }
