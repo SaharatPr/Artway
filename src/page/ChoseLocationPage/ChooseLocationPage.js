@@ -11,7 +11,7 @@ class ChooseLocationPage extends React.Component{
         return(
             <>
                 <Text>
-                
+                    
                 </Text>
             </>
         );
