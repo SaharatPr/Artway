@@ -46,28 +46,29 @@ class App extends React.Component {
             }
           />
           <Stack.Screen name="CreateDateOneDayPage" component={CreateDateOneDayPage}
-            options={
-              {
+            options={({ navigation }) => ({
+              
                 title: 'My trip',
                 headerTitleStyle: {
                   color: "#052238",
                   fontSize: 24
                 },
-                headerRight: ({navigate}) => {
+                headerRight: () => {
 
                   return (
                     <Button title="NEXT" color="#000000"
-                   
+                   onPress={() => navigation.navigate('ChooseLocationPage')}
                     >
 
-                    </Button>)
+                    </Button>
+                    )
                 },
                 headerTintColor: "#FFF",
                 headerBackTitleVisible: false,
                 headerTintColor: "#052238",
 
               }
-            } />
+            )} />
           <Stack.Screen name="ChooseLocationPage" component={ChooseLocationPage} options={{ headerShown: false }}
           
           
