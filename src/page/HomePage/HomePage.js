@@ -30,11 +30,11 @@ class Home extends React.Component {
             <Image source={{uri:'https://drive.google.com/uc?export=view&id=1Sbbt_Zo0eUqJrlM-o2DiS35jQphRm-L-'}}  style={styles.imgrout}></Image>
           </TouchableOpacity>
 
-          <MaterialBottomTabs.Navigator barStyle={{ backgroundColor: '#052238' }}>
+          <MaterialBottomTabs.Navigator barStyle={{ backgroundColor: '#052238' , height:"10%"}}>
            
             <MaterialBottomTabs.Screen
               name="Tab1"
-              style={{ marginBottom: 16 }}
+              style={{ margin: "auto",padding: "auto", }}
               component={Tab1}
               options={{
                 tabBarLabel: '',
@@ -46,7 +46,7 @@ class Home extends React.Component {
             <MaterialBottomTabs.Screen 
             name="Tab2" 
             component={Tab2}
-            style={{ marginBottom: 16 }}
+            style={{ margin: "auto",padding: "auto", }}
               options={{
                 tabBarLabel: '',
                 tabBarIcon: () => (
@@ -57,7 +57,7 @@ class Home extends React.Component {
             <MaterialBottomTabs.Screen 
             name="Tab3" 
             component={Tab3}
-            style={{ marginBottom: 16 }}
+            style={{ margin: "auto",padding: "auto", }}
               options={{
                 tabBarLabel: '',
                 tabBarIcon: () => (
@@ -68,7 +68,7 @@ class Home extends React.Component {
             <MaterialBottomTabs.Screen 
             name="Tab4" 
             component={Tab4}
-            style={{ marginBottom: 16 }}
+            style={{ margin: "auto",padding: "auto", }}
               options={{
                 tabBarLabel: '',
                 tabBarIcon: () => (

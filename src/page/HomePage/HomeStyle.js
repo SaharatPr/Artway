@@ -3,7 +3,12 @@ import { StyleSheet} from 'react-native';
 const styles = StyleSheet.create(
     {
         container :{
-
+            position:"absolute",
+            backgroundColor:"red",
+            zIndex:4,
+            height:"10%",
+            bottom:0,
+            right:0
         },
         tabbottom : {
             backgroundColor : "#FF00FF"
@@ -14,10 +19,10 @@ const styles = StyleSheet.create(
             flex:1,
             zIndex:3,
             padding: "10%",
+            bottom:"11%",
+            right:"5%",
             backgroundColor : "#FFFFFF",
             borderColor : "#FFFFFF",
-            bottom:100,
-            right: 20,
             textAlign: "center",
             alignContent: "center",
             justifyContent:"center",
@@ -36,6 +41,8 @@ const styles = StyleSheet.create(
             height:"70%",
             marginLeft:"auto",
             marginRight:"auto",
+            marginTop:"auto",
+            marginBottom:"auto",
             alignContent: "center",
             overflow:"visible"
         }

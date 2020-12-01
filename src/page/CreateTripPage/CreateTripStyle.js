@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         },
         txtbtn : {
             color : "#FFFFFF",
-            fontSize: 18
+            
         }
     
 });
