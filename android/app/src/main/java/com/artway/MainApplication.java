@@ -1,4 +1,4 @@
-package com.artway;
+package com.hlab.artwayapp;
 
 import android.app.Application;
 import android.content.Context;

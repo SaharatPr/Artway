@@ -1,4 +1,4 @@
-package com.artway;
+package com.hlab.artwayapp;
 
 import com.facebook.react.ReactActivity;
 

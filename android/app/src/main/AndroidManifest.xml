@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.artway">
+  package="com.hlab.artwayapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,6 +22,9 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <meta-data
+     android:name="com.google.android.geo.API_KEY"
+     android:value="AIzaSyBO5FrH58lN6ao579KdyajNpiax8iQ8yOY"/>
     </application>
 
 </manifest>
