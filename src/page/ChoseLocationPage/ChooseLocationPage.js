@@ -1,100 +1,149 @@
 import React from 'react';
-
+import MapView, { Heatmap, PROVIDER_GOOGLE } from 'react-native-maps';
 import {
     StyleSheet,
     View,
-    Platform
+    TextInput,
+    Text,
+    TouchableOpacity,
+    Modal,
   } from 'react-native';
-import MapView, { Heatmap, PROVIDER_GOOGLE } from 'react-native-maps';
+  import {
+    Button
+} from '@ui-kitten/components';
+import Geolocation from '@react-native-community/geolocation';
+import {queryplace} from '../../Controller/GoogleMaps/GoogleMapsPlace'
+import { styles } from './ChooseLocationPageStyle';
+import Autocomplete from 'react-native-autocomplete-input';
 class ChooseLocationPage extends React.Component{
     constructor(props){
         super(props);
+        this.conponentDidmon();
+        this.state = {
+          location : null,
+          displaysearch : "none",
+          resultplace: null
+        };
     }
-    state = {
-        initialPosition: {
-          latitude: 40.7143,
-          longitude: -74.0042,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.035
-        }
-      }
+   async conponentDidmon(){
+     const location =await this.handleuserlocation().then(lo=>{
+       return lo;
+     });
+     this.setState({location : location});
+    }
+
+    handleuserlocation =async ()=>{
+      return new Promise(async (resolve, reject) => {
+       await Geolocation.getCurrentPosition(async (info) => {
+          resolve({
+            longitude :info.coords.longitude,
+            latitude: info.coords.latitude,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.035
+          });
+        }); 
+      });
+    }
     
-      points = [
-        { latitude: 40.7828, longitude: -74.0065, weight: 1 },
-        { latitude: 41.7121, longitude: -74.0042, weight: 1 },
-        { latitude: 40.7102, longitude: -75.0060, weight: 1 },
-        { latitude: 40.7123, longitude: -74.0052, weight: 1 },
-        { latitude: 40.7032, longitude: -74.0042, weight: 1 },
-        { latitude: 40.7198, longitude: -74.0024, weight: 1 },
-        { latitude: 41.7223, longitude: -74.0053, weight: 1 },
-        { latitude: 40.7181, longitude: -74.0042, weight: 1 },
-        { latitude: 40.7124, longitude: -74.0023, weight: 1 },
-        { latitude: 40.7648, longitude: -74.0012, weight: 1 },
-        { latitude: 41.7128, longitude: -74.0027, weight: 1 },
-        { latitude: 40.7223, longitude: -74.0153, weight: 1 },
-        { latitude: 40.7193, longitude: -74.0052, weight: 1 },
-        { latitude: 40.7241, longitude: -75.0013, weight: 1 },
-        { latitude: 41.7518, longitude: -74.0085, weight: 1 },
-        { latitude: 40.7599, longitude: -74.0093, weight: 1 },
-        { latitude: 41.7523, longitude: -74.0021, weight: 1 },
-        { latitude: 40.7342, longitude: -74.0152, weight: 1 },
-        { latitude: 40.7484, longitude: -75.0042, weight: 1 },
-        { latitude: 40.7929, longitude: -75.0023, weight: 1 },
-        { latitude: 40.7292, longitude: -74.0013, weight: 1 },
-        { latitude: 40.7940, longitude: -74.0048, weight: 1 },
-        { latitude: 40.7874, longitude: -74.0052, weight: 1 },
-        { latitude: 40.7824, longitude: -74.0024, weight: 1 },
-        { latitude: 40.7232, longitude: -74.0094, weight: 1 },
-        { latitude: 41.7342, longitude: -74.0152, weight: 1 },
-        { latitude: 41.7484, longitude: -74.0012, weight: 1 },
-        { latitude: 41.7929, longitude: -74.0073, weight: 1 },
-        { latitude: 41.7292, longitude: -74.0013, weight: 1 },
-        { latitude: 41.7940, longitude: -74.0058, weight: 1 },
-        { latitude: 41.7874, longitude: -74.0352, weight: 1 },
-        { latitude: 41.7824, longitude: -74.0024, weight: 1 },
-        { latitude: 41.7232, longitude: -74.0094, weight: 1 },
-        { latitude: 41.0342, longitude: -75.0152, weight: 1 },
-        { latitude: 41.0484, longitude: -75.0012, weight: 1 },
-        { latitude: 41.0929, longitude: -75.0073, weight: 1 },
-        { latitude: 41.0292, longitude: -74.0013, weight: 1 },
-        { latitude: 41.0940, longitude: -74.0068, weight: 1 },
-        { latitude: 41.0874, longitude: -74.0052, weight: 1 },
-        { latitude: 41.0824, longitude: -74.0024, weight: 1 },
-        { latitude: 41.0232, longitude: -74.0014, weight: 1 }
-      ];
+    async onChangeText(text){
+      const value = text;
+      const resultplace =await queryplace(text);
+      this.setState({resultplace:resultplace});
+    }
+
+    dispalysearch(){
+     this.setState({displaysearch : "flex"});
+    }
+
     render(){
-        
-        
+      const DATA = [
+        {
+          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+          title: 'First Item',
+        },
+        {
+          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+          title: 'Second Item',
+        },
+        {
+          id: '58694a0f-3da1-471f-bd96-145571e29d72',
+          title: 'Third Item',
+        },
+      ];
+      const Item = ({ name }) => (
+        <View style={styles.item}>
+          <Text style={styles.title}>{name}</Text>
+        </View>
+      );
+
+      const renderItem = ({ item }) => (
+        <Item title={item.title} />
+      );
         return(
             <>
-            <MapView
-            provider={PROVIDER_GOOGLE}
-            ref={map => this._map = map}
-            style={styles.map}
-            initialRegion={this.state.initialPosition}>
-            <Heatmap
-              points={this.points}
-              radius={40}
-              opacity={1}
-              gradient={{
-                colors: ["black", "purple", "red", "orange", "white"],
-                startPoints: Platform.OS === 'ios' ? [0.01, 0.04, 0.1, 0.45, 0.5] :
-                  [0.1, 0.25, 0.5, 0.75, 1],
-                colorMapSize: 2000
-              }}
-            >
-            </Heatmap>
-          </MapView>
+            <View style={styles.container}>
+
+              <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                style={styles.map}
+                showsUserLocation={true}
+                region={this.state.location}
+            />
+
+            </View>
+
+            <View style={styles.content}>
+              <View style={styles.contenttrip}>
+                <Text style={styles.textsubheader}>
+                  1 August 2020
+                </Text>
+                <View style={{ flexDirection: 'row',alignItems:'center',paddingTop:"5%", position:"relative"}}>
+                  <TouchableOpacity style={styles.btnadd} onPress={this.dispalysearch.bind(this)}>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.dispalysearch.bind(this)}>
+                    <Text style={styles.textadd}>
+                      Add more Place
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+
+              </View>
+              <View style={{backgroundColor:"#FFFFFF",alignItems:'center', position:"absolute", height:"100%", width:"100%", display:this.state.displaysearch}}>
+              <TextInput style={styles.txtinput}
+                    onChangeText={text => this.onChangeText(text)}
+                    value={this.value}
+                    ></TextInput>
+
+                    <Autocomplete
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    containerStyle={styles.autocompleteContainer}
+                    data={this.state.resultplace?.resultplace}
+                    
+                    onChangeText={text => this.onChangeText(text)}
+                    placeholder=""
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                  />
+              </View>
+            </View>
+            
+
             </>
         );
     }
 }
-const styles = StyleSheet.create({
-    container: {
-      ...StyleSheet.absoluteFillObject
-    },
-    map: {
-      ...StyleSheet.absoluteFillObject
-    }
-  });
+
 export default ChooseLocationPage;
+// <TouchableOpacity style={styles.btnadd}>
+// </TouchableOpacity>
+// <View>
+//             <Text>
+//             dawdwadawdawda
+//             </Text>
+//             <TextInput style={styles.txtinput}
+//             onChangeText={text => this.onChangeText(text)}
+//             value={this.value}
+//             ></TextInput>
+//             </View>

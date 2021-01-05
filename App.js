@@ -23,13 +23,15 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 const Stack = createStackNavigator();
 class App extends React.Component {
-  
+
   constructor(props) {
     super(props);
+    
   }
   render() {
 
     function MyStack() {
+
       return (
         <Stack.Navigator>
           <Stack.Screen name="SpashScreenPage" component={SpashScreenPage} options={{ headerShown: false }} />
@@ -45,34 +47,53 @@ class App extends React.Component {
               }
             }
           />
+
           <Stack.Screen name="CreateDateOneDayPage" component={CreateDateOneDayPage}
-            options={({ navigation }) => ({
-              
-                title: 'My trip',
-                headerTitleStyle: {
-                  color: "#052238",
-                  fontSize: 24
-                },
-                headerRight: () => {
-
-                  return (
-                    <Button title="NEXT" color="#000000"
-                   onPress={() => navigation.navigate('ChooseLocationPage')}
-                    >
-
-                    </Button>
-                    )
-                },
-                headerTintColor: "#FFF",
-                headerBackTitleVisible: false,
-                headerTintColor: "#052238",
-
-              }
+            options={({ navigation, route  }) => (
+              {
+              title: 'My trip',
+              headerTitleStyle: {
+                color: "#052238",
+                fontSize: 24
+              },
+              headerRight: () => {
+                return (
+                  <Button title="NEXT" color="#000000"
+                    onPress={() => navigation.navigate('ChooseLocationPage',route.params)}
+                  >
+                  </Button>
+                )
+              },
+              headerTintColor: "#FFF",
+              headerBackTitleVisible: false,
+              headerTintColor: "#052238",
+            }
             )} />
-          <Stack.Screen name="ChooseLocationPage" component={ChooseLocationPage} options={{ headerShown: false }}
-          
-          
-          
+
+          <Stack.Screen name="ChooseLocationPage" component={ChooseLocationPage}
+            options={({ navigation, route }) => ({
+              title: route.params?.tripname ,
+              headerTitleStyle: {
+                color: "#052238",
+                fontSize: 24
+              },
+              headerRight: () => {
+                return (
+                  <Button title="NEXT" color="#000000"
+                    onPress={() => navigation.navigate('ChooseLocationPage')}
+                  >
+                  </Button>
+                )
+              },
+              headerTintColor: "#FFF",
+              headerBackTitleVisible: false,
+              headerTintColor: "#052238",
+
+            }
+            )}
+
+
+
           />
 
 
