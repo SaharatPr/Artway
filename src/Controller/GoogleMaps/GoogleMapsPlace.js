@@ -13,16 +13,16 @@ const queryplace = async (text)=>{
 }
 
 const cleandata=async (data)=>{
-    var result = {};
+    var result = [];
     if(Object.keys(data.results).length == 0){
         return null;
     }
     for(var k in await data.results) {
-        result[data.results[k].name] =await {
+        result.push({
             name : data.results[k].name,
             location:data.results[k].geometry.location,
             formatted_address : data.results[k].formatted_address
-        }
+        })
         if(k >5){
             return result
         }

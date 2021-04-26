@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
         paddingTop: "3%",
         width: "90%",
         height: "100%",
+        zIndex:1,
+        backgroundColor:"#FFFFFF"
     },
     textsubheader: {
         color: "#FF721A",
@@ -56,9 +58,19 @@ const styles = StyleSheet.create({
     },
     autocompleteContainer: {
         width:"80%",
-        marginLeft: 10,
-        marginRight: 10
-        
+      },
+      item: {
+          fontSize:16
+      },
+      title: {
+        fontSize: 16,
+      },
+      button: {
+        paddingLeft: "5%",
+        borderColor:"red",
+        padding: 10,
+        backgroundColor:"#FFFFFF",
+
       },
 });
 
